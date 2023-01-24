@@ -77,17 +77,17 @@ const AudioPlayer = () => {
   };
 
   return (
-    <center className="audioPlayer">
+    <center className={styles.audioPlayer}>
       {state.title && <p className="currentPlaying"> {state.title}</p>}
 
-      <span className="playItems">
+      <span className={styles.playItems}>
         <audio ref={audioPlayer} src={state.audio} preload="metadata" />
-        <button className="playPause" onClick={togglePlayPause}>
+        <button className={styles.playPause} onClick={togglePlayPause}>
           {state.playing ? (
             <FontAwesomeIcon id="faIcon" target="_blank" icon={faPause} />
           ) : (
             <FontAwesomeIcon
-              className="play"
+              className={styles.play}
               id="faIcon"
               target="_blank"
               icon={faPlay}
@@ -96,12 +96,12 @@ const AudioPlayer = () => {
         </button>
 
         {/* current time */}
-        <div className="currentTime">{calculateTime(currentTime)}</div>
+        <div className={styles.currentTime}>{calculateTime(currentTime)}</div>
 
         {/* Progress bar */}
         <div>
           <input
-            className="progressBar"
+            className={styles.progressBar}
             type="range"
             defaultValue="0"
             ref={progressBar}
@@ -109,7 +109,7 @@ const AudioPlayer = () => {
           />
         </div>
         {/* duration */}
-        <div className="duration">
+        <div className={styles.duration}>
           {!isNaN(duration) && calculateTime(duration)}
         </div>
       </span>

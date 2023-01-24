@@ -1,4 +1,6 @@
 import Image from 'next/image';
+
+import styles from '@/styles/Header.module.css';
 import grooveLogo from '../public/images/grooveLogo.png';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,7 +13,7 @@ import {
 
 const Header = () => {
   return (
-    <div className="header">
+    <div className={styles.header}>
       <div className="container flex">
         <Image src={grooveLogo} alt="92 Groove" id="img" />
         <p>
