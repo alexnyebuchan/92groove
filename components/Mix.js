@@ -1,0 +1,98 @@
+import Image from 'next/image';
+
+import { useContext } from 'react';
+
+import { AudioContext } from '../context/AudioContext';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { API_URL } from '@/config';
+
+import {
+  faCartShopping,
+  faPlay,
+  faDownload,
+} from '@fortawesome/free-solid-svg-icons';
+
+import grooveLogo from '../public/images/grooveLogo.png';
+
+const Mix = ({ mix }) => {
+  const { dispatch } = useContext(AudioContext);
+
+  const audioUrl = `${API_URL}${mix.audio.data.attributes.url}`;
+
+  const handleClick = () => {
+    dispatch({
+      type: 'SET_LOADING',
+    });
+    dispatch({
+      type: 'GET_MIX',
+      payload: {
+        title: mix.title,
+        audio: audioUrl,
+      },
+    });
+  };
+
+  return (
+    <div className="mix flex">
+      <div className="mix-info">
+        {/* Image */}
+        <Image
+          src={
+            mix.image.data !== null
+              ? mix.image.data.attributes.formats.small.url
+              : grooveLogo
+          }
+          alt="mix picture"
+          width={1000}
+          height={1000}
+        />
+        {/* Text */}
+        <span>
+          <h4>00{mix.cat}</h4>
+          <h1>{mix.title}</h1>
+          <p>{mix.description}</p>
+        </span>
+      </div>
+      {/* Links */}
+      <div className="mix-links">
+        <ul>
+          <li>
+            <a target="_blank" id="faIcon">
+              <FontAwesomeIcon
+                className="playDlBtn"
+                id="faIcon"
+                target="_blank"
+                icon={faPlay}
+                onClick={handleClick}
+              />
+            </a>
+          </li>
+          <li>
+            <a target="_blank" id="faIcon">
+              <FontAwesomeIcon
+                className="playDlBtn"
+                id="faIcon"
+                target="_blank"
+                icon={faDownload}
+              />
+            </a>
+          </li>
+        </ul>
+        <button>
+          <a className="cassetteBtn" href={mix.link} id="faIcon">
+            Buy Cassette{' '}
+            <FontAwesomeIcon
+              id="faIcon"
+              target="_blank"
+              icon={faCartShopping}
+            />
+          </a>
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Mix;

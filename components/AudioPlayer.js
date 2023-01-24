@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { AudioContext } from '../context/AudioContext';
 
+import styles from '@/styles/AudioPlayer.module.css';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { faPause, faPlay } from '@fortawesome/free-solid-svg-icons';
@@ -26,7 +28,7 @@ const AudioPlayer = () => {
     const seconds = Math.floor(
       !isNaN(audioPlayer.current.duration) ? audioPlayer.current.duration : 0
     );
-    console.log(audioPlayer.current.duration);
+    // console.log(audioPlayer.current.duration);
     setDuration(seconds);
     progressBar.current.max = seconds;
     if (state.playing) {

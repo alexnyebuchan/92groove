@@ -1,10 +1,13 @@
 import Layout from '../components/Layout';
+import Mixes from '../components/Mixes';
+
+import { API_URL } from '@/config/index';
 
 import { useReducer } from 'react';
 import { AudioContext } from '../context/AudioContext';
 import audioReducer from '../context/AudioReducer';
 
-export default function HomePage() {
+export default function HomePage({ mixes }) {
   const initialState = {
     title: null,
     audio: null,
@@ -17,8 +20,20 @@ export default function HomePage() {
   return (
     <AudioContext.Provider value={{ state, dispatch }}>
       <Layout>
-        <h1>Hi</h1>
+        <Mixes mixes={mixes} />
       </Layout>
     </AudioContext.Provider>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await fetch(
+    `${API_URL}/api/mixes?sort=cat:ASC&_limit=3&populate=*`
+  );
+  const jsonRes = await res.json();
+  const mixes = jsonRes.data;
+
+  return {
+    props: { mixes },
+  };
 }
