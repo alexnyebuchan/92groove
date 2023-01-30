@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
+
 import { AudioContext } from '../context/AudioContext';
 
 import styles from '@/styles/AudioPlayer.module.css';
@@ -11,6 +12,8 @@ const AudioPlayer = () => {
   // Context
   const { state, dispatch } = useContext(AudioContext);
 
+  console.log('component rendered', state);
+
   //State
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
@@ -19,25 +22,26 @@ const AudioPlayer = () => {
   // Reference
   const audioPlayer = useRef(); //audio component
   const progressBar = useRef(); // progress bar
-  // progressBar.current = state.
   const animationRef = useRef(); // animation
 
   useEffect(() => {
-    setIsPlaying(state.playing);
-    animationRef.current = requestAnimationFrame(whilePlaying);
-    const seconds = Math.floor(
-      !isNaN(audioPlayer.current.duration) ? audioPlayer.current.duration : 0
-    );
-    // console.log(audioPlayer.current.duration);
-    setDuration(seconds);
-    progressBar.current.max = seconds;
-    if (state.playing) {
-      audioPlayer.current.play();
-    } else if (!state.playing && state.audio) {
-      audioPlayer.current.pause();
-      cancelAnimationFrame(animationRef.current);
-    }
-  }, [state.playing]);
+    setTimeout(() => {
+      console.log('useeffect triggered', state);
+      animationRef.current = requestAnimationFrame(whilePlaying);
+      const seconds = Math.floor(
+        !isNaN(audioPlayer.current.duration) ? audioPlayer.current.duration : 0
+      );
+      setDuration(seconds);
+      progressBar.current.max = seconds;
+
+      if (state.playing) {
+        audioPlayer.current.play();
+      } else if (!state.playing && state.audio) {
+        audioPlayer.current.pause();
+        cancelAnimationFrame(animationRef.current);
+      }
+    }, '100');
+  }, [state]);
 
   const calculateTime = (secs) => {
     const minutes = Math.floor(secs / 60);
@@ -78,10 +82,24 @@ const AudioPlayer = () => {
 
   return (
     <center className={styles.audioPlayer}>
-      {state.title && <p className="currentPlaying"> {state.title}</p>}
-
+      {console.log('return triggered', state)}
+      {state.loading && (
+        <>
+          <p className="currentPlaying">Loading... </p>
+        </>
+      )}
+      {state.audio && (
+        <>
+          <p className="currentPlaying">Currently Playing: {state.title}</p>
+        </>
+      )}
       <span className={styles.playItems}>
-        <audio ref={audioPlayer} src={state.audio} preload="metadata" />
+        <audio
+          ref={audioPlayer}
+          src={state.audio}
+          preload="metadata"
+          id="audioFile"
+        />
         <button className={styles.playPause} onClick={togglePlayPause}>
           {state.playing ? (
             <FontAwesomeIcon id="faIcon" target="_blank" icon={faPause} />
@@ -95,10 +113,8 @@ const AudioPlayer = () => {
           )}
         </button>
 
-        {/* current time */}
         <div className={styles.currentTime}>{calculateTime(currentTime)}</div>
 
-        {/* Progress bar */}
         <div>
           <input
             className={styles.progressBar}
@@ -108,13 +124,70 @@ const AudioPlayer = () => {
             onChange={changeRange}
           />
         </div>
-        {/* duration */}
         <div className={styles.duration}>
           {!isNaN(duration) && calculateTime(duration)}
         </div>
       </span>
+      {/* <AudioView
+        styles={styles}
+        audio={state.audio}
+        togglePlayPause={togglePlayPause}
+        calculateTime={calculateTime}
+      /> */}
     </center>
   );
 };
+
+// const AudioView = (props) => {
+//   const duration = props.audio.duration;
+
+//   return (
+//     <>
+//       <span className={props.styles.playItems}>
+//         <audio
+//           // ref={audioPlayer}
+//           src={props.audio}
+//           preload="metadata"
+//           id="audioFile"
+//         />
+//         <button
+//           className={props.styles.playPause}
+//           onClick={props.togglePlayPause}
+//         >
+//           {props.state.playing ? (
+//             <FontAwesomeIcon id="faIcon" target="_blank" icon={faPause} />
+//           ) : (
+//             <FontAwesomeIcon
+//               className={props.styles.play}
+//               id="faIcon"
+//               target="_blank"
+//               icon={faPlay}
+//             />
+//           )}
+//         </button>
+
+//         {/* current time */}
+//         <div className={props.styles.currentTime}>
+//           {props.calculateTime(currentTime)}
+//         </div>
+
+//         {/* Progress bar */}
+//         <div>
+//           <input
+//             className={props.styles.progressBar}
+//             type="range"
+//             defaultValue="0"
+//             // ref={progressBar}
+//             onChange={changeRange}
+//           />
+//         </div>
+//         {/* duration */}
+//         <div className={props.styles.duration}>
+//           {!isNaN(duration) && props.calculateTime(duration)}
+//         </div>
+//       </span>
+//     </>
+//   );
+// };
 
 export default AudioPlayer;

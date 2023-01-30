@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 import styles from '@/styles/Header.module.css';
-import grooveLogo from '../public/images/grooveLogo.png';
+import grooveLogo from '../public/images/grooveLogoThree.png';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 

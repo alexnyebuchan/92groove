@@ -1,7 +1,7 @@
 /*  header */
 
 .header {
-  background-color: var(--primary-background);
+  background-color: var(--header-background);
   padding: 0 15px;
   padding-bottom: 17px;
   border-bottom: 1px solid black;
@@ -17,6 +17,6 @@
 }
 
 .header a:hover {
-  color: var(--primary-color);
+  color: var(--header-color);
   border-bottom: 2px var(--highlight-color) solid;
 }

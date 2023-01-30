@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { saveAs } from 'file-saver';
 
 import { useContext } from 'react';
 
@@ -20,6 +21,10 @@ const Mix = ({ mix }) => {
   const { dispatch } = useContext(AudioContext);
 
   const audioUrl = `${API_URL}${mix.audio.data.attributes.url}`;
+
+  const saveFile = () => {
+    saveAs(audioUrl);
+  };
 
   const handleClick = () => {
     dispatch({
@@ -50,7 +55,10 @@ const Mix = ({ mix }) => {
         />
         {/* Text */}
         <span>
-          <h4>00{mix.cat}</h4>
+          <h4>
+            {mix.cat < 10 ? '00' : '0'}
+            {mix.cat}
+          </h4>
           <h1>{mix.title}</h1>
           <p>{mix.description}</p>
         </span>
@@ -76,6 +84,7 @@ const Mix = ({ mix }) => {
                 id="faIcon"
                 target="_blank"
                 icon={faDownload}
+                onClick={saveFile}
               />
             </a>
           </li>

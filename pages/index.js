@@ -9,9 +9,9 @@ import audioReducer from '../context/AudioReducer';
 
 export default function HomePage({ mixes }) {
   const initialState = {
-    title: null,
+    title: '92 GROOVE',
     audio: null,
-    loading: true,
+    loading: false,
     playing: false,
   };
 

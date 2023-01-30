@@ -1,8 +1,8 @@
 /* audio player */
 
 .audioPlayer {
-  background-color: var(--primary-color);
-  color: var(--primary-background);
+  background-color: var(--audio-background);
+  color: var(--audio-color);
   padding: 11px 15px;
   position: fixed;
   bottom: 0px;
@@ -20,7 +20,7 @@
 
 .playPause {
   background-color: var(--highlight-color);
-  color: var(--primary-color);
+  color: var(--audio-color);
   border: none;
   border-radius: 50%;
   width: 60px;
@@ -33,7 +33,8 @@
 }
 
 .playPause:hover {
-  background-color: var(--secondary-background);
+  color: var(--audio-background);
+  background-color: var(--audio-color);
 }
 
 .play {
@@ -47,11 +48,11 @@
 }
 
 .progressBar {
-  --bar-bg: var(--secondary-background);
+  --bar-bg: var(--audio-color);
   --seek-before-width: 50px;
-  --seek-before-color: grey;
-  --thumb-color: var(--primary-background);
-  --thumb-selected: var(--highlight-color);
+  --seek-before-color: var(--audio-color);
+  --thumb-color: var(--highlight-color);
+  --thumb-selected: var(--audio-color);
 
   appearance: none;
   background: var(--bar-bg);

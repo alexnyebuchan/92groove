@@ -4,14 +4,13 @@ const audioReducer = (state, action) => {
       return {
         ...state,
         title: 'Loading...',
-        audio: null,
         loading: true,
         playing: false,
       };
     case 'GET_MIX':
       return {
         ...state,
-        title: 'Currently Playing: ' + action.payload.title,
+        title: action.payload.title,
         audio: action.payload.audio,
         loading: false,
         playing: true,
