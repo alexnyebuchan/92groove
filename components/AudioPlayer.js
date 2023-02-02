@@ -36,7 +36,7 @@ const AudioPlayer = () => {
         audioPlayer.current.pause();
         cancelAnimationFrame(animationRef.current);
       }
-    }, '500');
+    }, '250');
   }, [state]);
 
   const calculateTime = (secs) => {
