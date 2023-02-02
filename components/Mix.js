@@ -20,7 +20,8 @@ import grooveLogo from '../public/images/grooveLogo.png';
 const Mix = ({ mix }) => {
   const { dispatch } = useContext(AudioContext);
 
-  const audioUrl = `${API_URL}${mix.audio.data.attributes.url}`;
+  const audioUrl = mix.audio.data.attributes.url;
+  console.log(audioUrl);
 
   const saveFile = () => {
     saveAs(audioUrl);

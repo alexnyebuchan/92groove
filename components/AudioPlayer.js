@@ -12,8 +12,6 @@ const AudioPlayer = () => {
   // Context
   const { state, dispatch } = useContext(AudioContext);
 
-  console.log('component rendered', state);
-
   //State
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
@@ -25,7 +23,6 @@ const AudioPlayer = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      console.log('useeffect triggered', state);
       animationRef.current = requestAnimationFrame(whilePlaying);
       const seconds = Math.floor(
         !isNaN(audioPlayer.current.duration) ? audioPlayer.current.duration : 0
@@ -81,7 +78,6 @@ const AudioPlayer = () => {
 
   return (
     <center className={styles.audioPlayer}>
-      {console.log('return triggered', state)}
       {state.loading && (
         <>
           <p className="currentPlaying">Loading... </p>
