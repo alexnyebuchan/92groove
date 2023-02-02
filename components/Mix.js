@@ -41,7 +41,7 @@ const Mix = ({ mix }) => {
   };
 
   return (
-    <div className="mix flex">
+    <div className="mix">
       <div className="mix-info">
         {/* Image */}
         <Image
