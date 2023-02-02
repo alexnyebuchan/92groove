@@ -1,17 +1,3 @@
-/* audio player */
-
-.audioPlayer {
-  background-color: var(--audio-background);
-  color: var(--audio-color);
-  padding: 11px 15px;
-  position: fixed;
-  bottom: 0px;
-  display: block;
-
-  width: 100%;
-  border-top: 1px solid black;
-}
-
 .playItems {
   display: flex;
   align-items: center;
@@ -106,27 +92,8 @@
   background: var(--thumb-selected);
 }
 
-/* Tablets and under */
-@media (max-width: 768px) {
-}
-
 /* Mobile */
 @media (max-width: 580px) {
-  .mix-info {
-    height: 500px;
-    display: block;
-  }
-
-  .mixes img {
-    height: 60%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .mix-links {
-    padding: 5px 40px;
-    margin-top: 10px;
-  }
   .progressBar {
     width: 150px;
   }

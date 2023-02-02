@@ -27,9 +27,7 @@ export default function HomePage({ mixes }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(
-    `${API_URL}/api/mixes?sort=cat:ASC&_limit=3&populate=*`
-  );
+  const res = await fetch(`${API_URL}/api/mixes?sort=cat:ASC&populate=*`);
   const jsonRes = await res.json();
   const mixes = jsonRes.data;
 

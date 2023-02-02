@@ -1,0 +1,10 @@
+.footer {
+  background-color: var(--audio-background);
+  color: var(--audio-color);
+  padding: 11px 15px;
+  position: fixed;
+  bottom: 0px;
+  display: block;
+  width: 100%;
+  border-top: 1px solid black;
+}

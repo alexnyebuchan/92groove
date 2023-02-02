@@ -15,7 +15,6 @@ const AudioPlayer = () => {
   console.log('component rendered', state);
 
   //State
-  const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
 
@@ -137,57 +136,5 @@ const AudioPlayer = () => {
     </center>
   );
 };
-
-// const AudioView = (props) => {
-//   const duration = props.audio.duration;
-
-//   return (
-//     <>
-//       <span className={props.styles.playItems}>
-//         <audio
-//           // ref={audioPlayer}
-//           src={props.audio}
-//           preload="metadata"
-//           id="audioFile"
-//         />
-//         <button
-//           className={props.styles.playPause}
-//           onClick={props.togglePlayPause}
-//         >
-//           {props.state.playing ? (
-//             <FontAwesomeIcon id="faIcon" target="_blank" icon={faPause} />
-//           ) : (
-//             <FontAwesomeIcon
-//               className={props.styles.play}
-//               id="faIcon"
-//               target="_blank"
-//               icon={faPlay}
-//             />
-//           )}
-//         </button>
-
-//         {/* current time */}
-//         <div className={props.styles.currentTime}>
-//           {props.calculateTime(currentTime)}
-//         </div>
-
-//         {/* Progress bar */}
-//         <div>
-//           <input
-//             className={props.styles.progressBar}
-//             type="range"
-//             defaultValue="0"
-//             // ref={progressBar}
-//             onChange={changeRange}
-//           />
-//         </div>
-//         {/* duration */}
-//         <div className={props.styles.duration}>
-//           {!isNaN(duration) && props.calculateTime(duration)}
-//         </div>
-//       </span>
-//     </>
-//   );
-// };
 
 export default AudioPlayer;

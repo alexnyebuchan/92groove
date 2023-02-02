@@ -21,26 +21,22 @@ const Header = () => {
         </p>
         <ul>
           <li>
+            <a target="_blank" href="https://www.instagram.com/" id="faIcon">
+              <FontAwesomeIcon id="faIcon" icon={faInstagram} />
+            </a>
+          </li>
+          <li>
             <a
               target="_blank"
-              href="https://www.instagram.com/al_zanders/?hl=en"
+              href="https://soundcloud.com/discover"
               id="faIcon"
             >
-              <FontAwesomeIcon id="faIcon" target="_blank" icon={faInstagram} />
+              <FontAwesomeIcon id="faIcon" icon={faSoundcloud} />
             </a>
           </li>
           <li>
-            <a href="https://soundcloud.com/discover" id="faIcon">
-              <FontAwesomeIcon
-                id="faIcon"
-                target="_blank"
-                icon={faSoundcloud}
-              />
-            </a>
-          </li>
-          <li>
-            <a href="https://bandcamp.com/" id="faIcon">
-              <FontAwesomeIcon id="faIcon" target="_blank" icon={faBandcamp} />
+            <a href="https://bandcamp.com/" target="_blank" id="faIcon">
+              <FontAwesomeIcon id="faIcon" icon={faBandcamp} />
             </a>
           </li>
         </ul>

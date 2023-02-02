@@ -72,7 +72,7 @@ p {
 /* mixes */
 
 .mixes {
-  margin-bottom: 130px;
+  margin-bottom: 175px;
 }
 
 .mixes li {
@@ -141,4 +141,23 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+/* Mobile */
+@media (max-width: 580px) {
+  .mix-info {
+    height: 500px;
+    display: block;
+  }
+
+  .mixes img {
+    height: 60%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .mix-links {
+    padding: 5px 40px;
+    margin-top: 10px;
+  }
 }
