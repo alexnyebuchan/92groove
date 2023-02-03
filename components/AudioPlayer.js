@@ -9,12 +9,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPause, faPlay } from '@fortawesome/free-solid-svg-icons';
 
 const AudioPlayer = () => {
-  // Context
-  const { state, dispatch } = useContext(AudioContext);
-
   //State
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+
+  // Context
+  const { state, dispatch } = useContext(AudioContext);
 
   // Reference
   const audioPlayer = useRef(); //audio component
@@ -22,29 +22,37 @@ const AudioPlayer = () => {
   const animationRef = useRef(); // animation
 
   useEffect(() => {
-    setTimeout(() => {
+    if (state.playing) {
+      audioPlayer.current.play();
+    } else if (!state.playing && state.audio) {
+      audioPlayer.current.pause();
+      cancelAnimationFrame(animationRef.current);
+    }
+    const currentAudio = audioPlayer.current;
+    currentAudio.onloadeddata = () => {
       animationRef.current = requestAnimationFrame(whilePlaying);
       const seconds = Math.floor(
         !isNaN(audioPlayer.current.duration) ? audioPlayer.current.duration : 0
       );
       setDuration(seconds);
       progressBar.current.max = seconds;
-
-      if (state.playing) {
-        audioPlayer.current.play();
-      } else if (!state.playing && state.audio) {
-        audioPlayer.current.pause();
-        cancelAnimationFrame(animationRef.current);
-      }
-    }, '250');
+    };
   }, [state]);
 
   const calculateTime = (secs) => {
+    const hours = Math.floor(secs / 3600);
+    const returnedHours = hours < 10 ? `0${hours}` : `${hours}`;
     const minutes = Math.floor(secs / 60);
-    const returnedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
+    const calculatedMinutes = minutes >= 60 ? minutes - 60 : minutes;
+    const returnedMinutes =
+      calculatedMinutes < 10 ? `0${calculatedMinutes}` : `${calculatedMinutes}`;
     const seconds = Math.floor(secs % 60);
     const returnedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
-    return `${returnedMinutes}:${returnedSeconds}`;
+    if (returnedHours < 1) {
+      return `${returnedMinutes}:${returnedSeconds}`;
+    } else {
+      return `${returnedHours}:${returnedMinutes}:${returnedSeconds}`;
+    }
   };
 
   const togglePlayPause = () => {
@@ -119,6 +127,7 @@ const AudioPlayer = () => {
             onChange={changeRange}
           />
         </div>
+
         <div className={styles.duration}>
           {!isNaN(duration) && calculateTime(duration)}
         </div>

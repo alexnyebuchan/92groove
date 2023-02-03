@@ -24,6 +24,7 @@ body {
   font-family: 'Bold';
   color: var(--header-color);
   line-height: 1.6;
+  background-color: var(--mix-background);
 }
 
 ul {
