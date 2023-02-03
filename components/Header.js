@@ -17,7 +17,7 @@ const Header = () => {
       <div className="container flex">
         <Image src={grooveLogo} alt="92 Groove" id="img" />
         <p>
-          Contact: <a href="mailto: 92groove@gmail.com">92groove@gmail.com</a>
+          Contact: <a href="mailto: 92groove@gmail.com">92grooveuk@gmail.com</a>
         </p>
         <ul>
           <li>
