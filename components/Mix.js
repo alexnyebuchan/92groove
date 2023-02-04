@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { saveAs } from 'file-saver';
 
 import { useContext } from 'react';
@@ -91,7 +92,12 @@ const Mix = ({ mix }) => {
           </li>
         </ul>
         <button>
-          <a className="cassetteBtn" href={mix.link} id="faIcon">
+          <a
+            className="cassetteBtn"
+            target="_blank"
+            href={mix.link}
+            id="faIcon"
+          >
             Buy Cassette{' '}
             <FontAwesomeIcon
               id="faIcon"
