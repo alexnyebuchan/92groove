@@ -117,7 +117,7 @@ const AudioPlayer = () => {
           </>
         )}
         <div>
-          <a href="#" onClick={handleVolumeButton}>
+          <a onClick={handleVolumeButton}>
             {volume > 0 ? (
               <FontAwesomeIcon
                 className={styles.volumeBtn}
