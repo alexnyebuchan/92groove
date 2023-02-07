@@ -1,3 +1,49 @@
+.volume {
+  position: absolute;
+}
+
+.volumeInput {
+  --bar-bg: var(--highlight-color);
+  --seek-before-width: 50px;
+  --seek-before-color: var(--audio-color);
+  --thumb-color: var(--audio-background);
+  --thumb-selected: var(--highlight-color);
+  appearance: none;
+  background: var(--bar-bg);
+  border-radius: 10px;
+  border: 1px solid black;
+  position: relative;
+  left: 6px;
+  bottom: 57px;
+  width: 70px;
+  height: 11px;
+  transform: rotate(270deg);
+}
+
+.volumeInput::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  border: none;
+  background: var(--thumb-color);
+  cursor: pointer;
+  position: relative;
+  z-index: 3;
+  box-sizing: border-box;
+}
+
+.volumeBtn {
+  padding-left: 12px;
+  width: 20px;
+}
+
+.infoVol {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .playItems {
   display: flex;
   align-items: center;
@@ -44,7 +90,7 @@
   background: var(--bar-bg);
   border-radius: 10px;
   position: relative;
-  width: 400px;
+  width: 350px;
   height: 11px;
   outline: none;
 }

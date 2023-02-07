@@ -6,12 +6,19 @@ import styles from '@/styles/AudioPlayer.module.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { faPause, faPlay } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPause,
+  faPlay,
+  faVolumeHigh,
+  faVolumeMute,
+} from '@fortawesome/free-solid-svg-icons';
 
 const AudioPlayer = () => {
   //State
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+  const [volume, setVolume] = useState(100);
+  const [showVolume, setShowVolume] = useState(false);
 
   // Context
   const { state, dispatch } = useContext(AudioContext);
@@ -84,18 +91,65 @@ const AudioPlayer = () => {
     setCurrentTime(progressBar.current.value);
   };
 
+  const handleVolumeChange = (event) => {
+    setVolume(event.target.value);
+    audioPlayer.current.volume = event.target.value / 100;
+  };
+
+  const handleVolumeButton = () => {
+    const prevValue = showVolume;
+    setShowVolume(!prevValue);
+  };
+
   return (
     <center className={styles.audioPlayer}>
-      {state.loading && (
-        <>
-          <p className="currentPlaying">Loading... </p>
-        </>
-      )}
-      {state.audio && (
-        <>
-          <p className="currentPlaying">Currently Playing: {state.title}</p>
-        </>
-      )}
+      <div className={styles.infoVol}>
+        {state.loading && (
+          <>
+            <p className={styles.currentPlay}>Loading... </p>
+          </>
+        )}
+        {state.audio && (
+          <>
+            <p className={styles.currentPlay}>
+              Currently Playing: {state.title}
+            </p>
+          </>
+        )}
+        <div>
+          <a href="#" onClick={handleVolumeButton}>
+            {volume > 0 ? (
+              <FontAwesomeIcon
+                className={styles.volumeBtn}
+                id="faIcon"
+                target="_blank"
+                icon={faVolumeHigh}
+              />
+            ) : (
+              <FontAwesomeIcon
+                className={styles.volumeBtn}
+                id="faIcon"
+                target="_blank"
+                icon={faVolumeMute}
+              />
+            )}
+          </a>
+
+          {showVolume && (
+            <div className={styles.volume}>
+              <input
+                className={styles.volumeInput}
+                type="range"
+                min="0"
+                max="100"
+                value={volume}
+                onChange={handleVolumeChange}
+              />
+            </div>
+          )}
+        </div>
+      </div>
+
       <span className={styles.playItems}>
         <audio
           ref={audioPlayer}
@@ -132,12 +186,6 @@ const AudioPlayer = () => {
           {!isNaN(duration) && calculateTime(duration)}
         </div>
       </span>
-      {/* <AudioView
-        styles={styles}
-        audio={state.audio}
-        togglePlayPause={togglePlayPause}
-        calculateTime={calculateTime}
-      /> */}
     </center>
   );
 };
