@@ -25,7 +25,7 @@ const Mix = ({ mix }) => {
   console.log(audioUrl);
 
   const saveFile = () => {
-    saveAs(audioUrl);
+    saveAs(audioUrl, `${mix.cat} ${mix.title}`);
   };
 
   const handleClick = () => {
